@@ -20,18 +20,51 @@ class Game(BaseModel):
     
     @validates('title')
     def validate_name(self, key, name):
+        """
+        Validate that the game title meets minimum length requirements.
+        
+        Args:
+            key (str): The attribute name being validated
+            name (str): The title value to validate
+            
+        Returns:
+            str: The validated title
+        """
         return self.validate_string_length('Game title', name, min_length=2)
     
     @validates('description')
     def validate_description(self, key, description):
+        """
+        Validate that the game description meets minimum length requirements.
+        
+        Args:
+            key (str): The attribute name being validated
+            description (str): The description value to validate
+            
+        Returns:
+            str: The validated description
+        """
         if description is not None:
             return self.validate_string_length('Description', description, min_length=10, allow_none=True)
         return description
     
     def __repr__(self):
+        """
+        Return a string representation of the Game object.
+        
+        Returns:
+            str: A string showing the game title and ID
+        """
         return f'<Game {self.title}, ID: {self.id}>'
 
     def to_dict(self):
+        """
+        Convert the Game object to a dictionary for JSON serialization.
+        
+        Returns:
+            dict: A dictionary containing the game's attributes including
+                  nested publisher and category information
+        """
         return {
             'id': self.id,
             'title': self.title,
