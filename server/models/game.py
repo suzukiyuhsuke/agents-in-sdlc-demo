@@ -24,8 +24,8 @@ class Game(BaseModel):
         Validate that the game title meets minimum length requirements.
         
         Args:
-            key (str): The attribute name being validated
-            name (str): The title value to validate
+            key (str): The attribute name being validated ('title')
+            name (str): The title value to validate (parameter name is 'name' for consistency with SQLAlchemy validators)
             
         Returns:
             str: The validated title
